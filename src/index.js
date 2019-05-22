@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
+import { ADD_DRINK, ADD_SANDWICH, ADD_CHIPS, REMOVE_DRINK, REMOVE_SANDWICH, REMOVE_CHIPS, REMOVE_LUNCH, addDrink, addSandwich, addChips, removeDrink, removeSandwich, removeChips, removeLunch } from './actions/lunchActions';
 
 const initialState = {
   drink: null,
@@ -8,19 +9,19 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch(action.type) {
-    case 'ADD_DRINK':
+    case ADD_DRINK:
       return { ...state, drink: action.payload };
-    case 'ADD_SANDWICH':
+    case ADD_SANDWICH:
       return { ...state, sandwich: action.payload };
-    case 'ADD_CHIPS':
+    case ADD_CHIPS:
       return { ...state, chips: action.payload };
-    case 'REMOVE_DRINK':
+    case REMOVE_DRINK:
       return { ...state, drink: null };
-    case 'REMOVE_SANDWICH':
+    case REMOVE_SANDWICH:
       return { ...state, sandwich: null };
-    case 'REMOVE_CHIPS':
+    case REMOVE_CHIPS:
       return { ...state, chips: null };
-    case 'REMOVE_LUNCH':
+    case REMOVE_LUNCH:
       return { initialState };
     default:
       return state;
@@ -29,50 +30,30 @@ function reducer(state = initialState, action) {
 
 const store = createStore(reducer);
 
-store.dispatch({
-  type: 'ADD_DRINK',
-  payload: 'Jarito'
-});
+store.dispatch(addDrink('Jarito'));
 
 console.log('added drink', store.getState());
 
-store.dispatch({
-  type: 'ADD_SANDWICH',
-  payload: 'Turkey and Cheese'
-});
+store.dispatch(addSandwich('Turkey and Cheese'));
 
 console.log('added sandwich', store.getState());
 
-store.dispatch({
-  type: 'ADD_CHIPS',
-  payload: 'Sea Salt and Vinegar'
-});
+store.dispatch(addChips('Sea Salt and Vinegar'));
 
 console.log('added chips', store.getState());
 
-store.dispatch({
-  type: 'REMOVE_DRINK',
-  payload: 'Jarito'
-});
+store.dispatch(removeDrink('Jarito'));
 
 console.log('removed drink', store.getState());
 
-store.dispatch({
-  type: 'REMOVE_SANDWICH',
-  payload: 'Turkey and Cheese'
-});
+store.dispatch(removeSandwich('Turkey and Cheese'));
 
 console.log('removed sandwich', store.getState());
 
-store.dispatch({
-  type: 'REMOVE_CHIPS',
-  payload: 'Sea Salt and Vinegar'
-});
+store.dispatch(removeChips('Sea Salt and Vinegar'));
 
 console.log('removed chips', store.getState());
 
-store.dispatch({
-  type: 'REMOVE_LUNCH',
-});
+store.dispatch(removeLunch);
 
 console.log('no mo lunch', store.getState());
