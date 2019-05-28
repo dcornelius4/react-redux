@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CommentsByPostId from '../../containers/comments/CommentsByPostId';
+import CreateComment from '../../containers/comments/CreateComment';
 
 function PostDetail({ post }) {
   const paras = post.body.split('\n').map((p, i) => (
@@ -9,6 +11,8 @@ function PostDetail({ post }) {
     <section>
       <h1>{post.title}</h1>
       {paras}
+      <CommentsByPostId postId={post.id} />
+      <CreateComment postId={post.id} />
     </section>
   );
 }
